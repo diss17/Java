@@ -4,6 +4,7 @@ package tarea01;
 import java.sql.Date;
 //Definicion de clases
 
+<<<<<<< HEAD
 class Cliente {
 
     public Cliente() {
@@ -51,6 +52,11 @@ public class Tarea01 {
     public static void main(String[] args) {
         OrdenCompra m = new OrdenCompra();
         System.out.println(m);
+=======
+    public static void main(String[] args) {
+        System.out.println("hola");
+        System.out.println("test");
+>>>>>>> d5e713b0c769c5f65194cb98659ccbd8cb45c9c9
     }
 
 }
