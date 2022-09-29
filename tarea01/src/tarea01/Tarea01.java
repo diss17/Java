@@ -77,16 +77,38 @@ class DetalleOrden {
 
 }
 
+//  Class fran.
 class Articulo {
+<<<<<<< HEAD
 
     public Articulo() {
 
+=======
+    private float pesoUn, money;
+    private String nameUs, description;
+    
+    public Articulo(){
+    }
+  
+    public float getPeso(float peso){
+        this.pesoUn=peso;
+        return pesoUn;
+    }
+    
+    public float getPrecio(float precio){
+        this.money=precio;
+        return money;
+    }
+    public String getNombre(String nombre){
+        this.nameUs=nombre;
+        return nameUs;
+    }
+    public String getDescripcion(String descripcion){
+        this.description=descripcion;
+        return description;
+>>>>>>> 4cfb96238dfb0d94d5c703070883f12cb62dd134
     }
 
-    float peso;
-    String nombre;
-    String descripcion;
-    float precio;
 }
 
 class Tarjeta {
@@ -155,7 +177,10 @@ class Factura {
 
 class Boleta {
 
+<<<<<<< HEAD
 }
+=======
+>>>>>>> 4cfb96238dfb0d94d5c703070883f12cb62dd134
 
 public class Tarea01 {
 
@@ -168,5 +193,23 @@ public class Tarea01 {
         String rut = f.getRut("212272183");
         String direccion = a.getDirec("Patio los callaos");
         System.out.println(nombre + " " + rut + " " + direccion);
+        
+        //Tamo instanciando Articulo de pana.
+        Articulo x= new Articulo();
+        Articulo y= new Articulo();
+        Articulo z= new Articulo();
+        Articulo v= new Articulo();
+        
+        float pesO=z.getPeso(7);
+        float preciO=v.getPrecio(12000);
+        String nombreArticulo=x.getNombre("Mouse");
+        String descrip=y.getDescripcion("Es rosado pinki barbie");
+        System.out.println(nombreArticulo+" "+descrip+" pesa "+pesO+" y vale "+preciO+" bella");
+        
+        
+        
+        
+        
+        
     }
 }
