@@ -61,17 +61,63 @@ class OrdenCompra {
 }
 
 class DetalleOrden {
-
+    public DetalleOrden(){
+        
+    }
     private int cantidad;
 
 }
 
 class Articulo {
+    public Articulo(){
+        
+    }
 
     float peso;
     String nombre;
     String descripcion;
     float precio;
+}
+
+class Tarjeta{
+    public Tarjeta(){
+        
+    }
+    String tipo;
+    String numTransaccion;
+    
+}
+
+class Transferencia{
+    public Transferencia(){
+        
+    }
+    String banco;
+    String numCuenta;
+}
+
+class Pago{
+    private float monto;
+    Date fecha = new Date();
+    
+}
+
+class DocTributario{
+    Date fecha = new Date();
+    private String numero;
+    private String rut;
+}
+
+class Factura{
+    
+}
+
+class Boleta{
+    
+}
+
+class Direccion{
+    private String direccion;
 }
 
 public class Tarea01 {
