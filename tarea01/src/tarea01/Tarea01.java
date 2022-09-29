@@ -7,14 +7,17 @@ import java.util.Date;
 class Cliente {
 
     private String name, id;
+
     //Constructor
     public Cliente() {
     }
+
     //Getter para nombre
     public String getNombre(String nombre) {
         this.name = nombre;
         return name;
     }
+
     //Getter para rut
     public String getRut(String rut) {
         this.id = rut;
@@ -24,17 +27,22 @@ class Cliente {
     //debe ir asociada a un cliente distinto
     OrdenCompra asociado;
 }
-class Direccion{
+
+class Direccion {
+
     private String address;
+
     //Constructor
-    public Direccion(){
+    public Direccion() {
     }
+
     //Getter para direccion
-    public String getDirec(String direccion){
+    public String getDirec(String direccion) {
         this.address = direccion;
         return address;
     }
 }
+
 class OrdenCompra {
 
     public OrdenCompra() {
@@ -61,16 +69,18 @@ class OrdenCompra {
 }
 
 class DetalleOrden {
-    public DetalleOrden(){
-        
+
+    public DetalleOrden() {
+
     }
     private int cantidad;
 
 }
 
 class Articulo {
-    public Articulo(){
-        
+
+    public Articulo() {
+
     }
 
     float peso;
@@ -79,45 +89,72 @@ class Articulo {
     float precio;
 }
 
-class Tarjeta{
-    public Tarjeta(){
-        
+class Tarjeta {
+
+    public Tarjeta() {
+
     }
     String tipo;
     String numTransaccion;
-    
+
 }
 
-class Transferencia{
-    public Transferencia(){
-        
+class Transferencia {
+
+    public Transferencia() {
+
     }
     String banco;
     String numCuenta;
 }
 
-class Pago{
+class Pago {
+
     private float monto;
     Date fecha = new Date();
-    
+    public Pago(){
+    }
+    class Efectivo extends Pago{
+        public Efectivo(){
+        }
+        public float calcDevolucion(float dinero){
+            if(monto == dinero){
+                return 0;
+            }
+            else{
+                return monto - dinero;
+            }
+        }
+    }
+    class Transferencia extends Pago{
+        private String banco;
+        private String numCuenta;
+        public Transferencia(){   
+        }
+        public String getBank(String bank){
+            this.banco = bank;
+            return banco;
+        }
+        public String getNumCuenta(String num){
+            this.numCuenta = num;
+            return num;
+        }
+    }
 }
 
-class DocTributario{
+class DocTributario {
+
     Date fecha = new Date();
     private String numero;
     private String rut;
 }
 
-class Factura{
-    
+class Factura {
+
 }
 
-class Boleta{
-    
-}
+class Boleta {
 
-class Direccion{
-    private String direccion;
 }
 
 public class Tarea01 {
