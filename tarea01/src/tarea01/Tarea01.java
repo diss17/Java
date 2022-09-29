@@ -68,15 +68,31 @@ class DetalleOrden {
 
 }
 
+//  Class fran.
 class Articulo {
     public Articulo(){
-        
+    }
+    private float pesoUn, money;
+    private String nameUs, description;
+    
+    private float getPeso(float peso){
+        this.pesoUn=peso;
+        return pesoUn;
+    }
+    
+    private float getPrecio(float precio){
+        this.money=precio;
+        return money;
+    }
+    private String getNombre(String nombre){
+        this.nameUs=nombre;
+        return nameUs;
+    }
+    private String getDescripcion(String descripcion){
+        this.description=descripcion;
+        return description;
     }
 
-    float peso;
-    String nombre;
-    String descripcion;
-    float precio;
 }
 
 class Tarjeta{
@@ -116,9 +132,6 @@ class Boleta{
     
 }
 
-class Direccion{
-    private String direccion;
-}
 
 public class Tarea01 {
 
