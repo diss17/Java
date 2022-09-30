@@ -68,24 +68,16 @@ class OrdenCompra {
 
 }
 
-class DetalleOrden {
-
-    public DetalleOrden() {
-
-    }
-    private int cantidad;
-
-}
 
 //  Class fran.
 class Articulo {
 
     private float pesoUn, money;
     private String nameUs, description;
-
+    
     public Articulo() {
     }
-
+    
     public float getPeso(float peso) {
         this.pesoUn = peso;
         return pesoUn;
@@ -106,6 +98,43 @@ class Articulo {
         return description;
 
     }
+
+  
+    
+    class DetalleOrden extends Articulo{
+        private int cantidad;
+        public DetalleOrden(int c){
+            c=cantidad;
+            
+        }
+        public int total;
+        public int iva;
+        public int calcPrecio(int total){
+            int moneyInt=Math.round(money);
+            total=cantidad*moneyInt;
+            return total;
+        }
+
+        public int calcIVA (int iva){
+            iva=(19*total)/100;
+            return iva;
+        }
+        
+        public int calPrecioSinIVA(int totalSinIVA){
+            //Calculamos el precio quitandole el IVA
+            totalSinIVA=total-iva;
+            return totalSinIVA;
+        }
+        
+        public int calcPeso(int pesoTotal){
+            //Calculamos el peso total
+            int pesoInt=Math.round(pesoUn);
+            pesoTotal=cantidad*pesoInt;
+            return pesoTotal;
+        }
+    
+}
+    
 
 }
 
@@ -238,5 +267,12 @@ public class Tarea01 {
         String tarjeta = card.getTipo("Credito");
         String numT = card.getNumT("5612824719854");
         System.out.println("Tipo de tarjeta:"+ tarjeta + " " + "Numero de tarjeta:"+ numT);
+        
+        //Probemos clase DetalleOrden
+        Articulo c=new Articulo();
+        Articulo.DetalleOrden cant=c.new DetalleOrden(3);
+      
+        
+        
     }
 }
