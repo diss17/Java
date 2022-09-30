@@ -79,34 +79,32 @@ class DetalleOrden {
 
 //  Class fran.
 class Articulo {
-<<<<<<< HEAD
 
-    public Articulo() {
-
-=======
     private float pesoUn, money;
     private String nameUs, description;
-    
-    public Articulo(){
+
+    public Articulo() {
     }
-  
-    public float getPeso(float peso){
-        this.pesoUn=peso;
+
+    public float getPeso(float peso) {
+        this.pesoUn = peso;
         return pesoUn;
     }
-    
-    public float getPrecio(float precio){
-        this.money=precio;
+
+    public float getPrecio(float precio) {
+        this.money = precio;
         return money;
     }
-    public String getNombre(String nombre){
-        this.nameUs=nombre;
+
+    public String getNombre(String nombre) {
+        this.nameUs = nombre;
         return nameUs;
     }
-    public String getDescripcion(String descripcion){
-        this.description=descripcion;
+
+    public String getDescripcion(String descripcion) {
+        this.description = descripcion;
         return description;
->>>>>>> 4cfb96238dfb0d94d5c703070883f12cb62dd134
+
     }
 
 }
@@ -134,32 +132,51 @@ class Pago {
 
     private float monto;
     Date fecha = new Date();
-    public Pago(){
+
+    public Pago() {
     }
-    class Efectivo extends Pago{
-        public Efectivo(){
+
+    class Efectivo extends Pago {
+
+        public Efectivo() {
         }
-        public float calcDevolucion(float dinero){
-            if(monto == dinero){
+        public float calcDevolucion(float dinero) {
+            if (monto == dinero) {
                 return 0;
-            }
-            else{
+            } else {
                 return monto - dinero;
             }
         }
     }
-    class Transferencia extends Pago{
+
+    class Transferencia extends Pago {
+
         private String banco;
         private String numCuenta;
-        public Transferencia(){   
+
+        public Transferencia() {
         }
-        public String getBank(String bank){
+
+        public String getBank(String bank) {
             this.banco = bank;
             return banco;
         }
-        public String getNumCuenta(String num){
+
+        public String getNumCuenta(String num) {
             this.numCuenta = num;
-            return num;
+            return numCuenta;
+        }
+    }
+    class Tarjeta extends Pago{
+        private String tipo;
+        private String numTransaccion;
+        public String getTipo(String type){
+            this.tipo = type;
+            return type;
+        }
+        public String getNumT(String num){
+            this.numTransaccion = num;
+            return numTransaccion;
         }
     }
 }
@@ -176,11 +193,7 @@ class Factura {
 }
 
 class Boleta {
-
-<<<<<<< HEAD
 }
-=======
->>>>>>> 4cfb96238dfb0d94d5c703070883f12cb62dd134
 
 public class Tarea01 {
 
@@ -193,23 +206,37 @@ public class Tarea01 {
         String rut = f.getRut("212272183");
         String direccion = a.getDirec("Patio los callaos");
         System.out.println(nombre + " " + rut + " " + direccion);
-        
+        System.out.println();
         //Tamo instanciando Articulo de pana.
-        Articulo x= new Articulo();
-        Articulo y= new Articulo();
-        Articulo z= new Articulo();
-        Articulo v= new Articulo();
-        
-        float pesO=z.getPeso(7);
-        float preciO=v.getPrecio(12000);
-        String nombreArticulo=x.getNombre("Mouse");
-        String descrip=y.getDescripcion("Es rosado pinki barbie");
-        System.out.println(nombreArticulo+" "+descrip+" pesa "+pesO+" y vale "+preciO+" bella");
-        
-        
-        
+        Articulo x = new Articulo();
+        Articulo y = new Articulo();
+        Articulo z = new Articulo();
+        Articulo v = new Articulo();
+
+        float pesO = z.getPeso(7);
+        float preciO = v.getPrecio(12000);
+        String nombreArticulo = x.getNombre("Mouse");
+        String descrip = y.getDescripcion("Es rosado pinki barbie");
+        System.out.println(nombreArticulo + " " + descrip + " pesa " + pesO + " y vale " + preciO + " bella");
+        System.out.println();
         
         
+        //Instancia/Prueba metodos de pago
+        Pago num1 = new Pago();
+        Pago.Transferencia bank = num1.new Transferencia();
+        String banco = bank.getBank("Santander");
+        String cuenta = bank.getNumCuenta("12412451");
+        System.out.println("Nombre del banco:" + banco + " " + "Numero de cuenta:" +cuenta);
         
+        Pago num2 = new Pago();
+        Pago.Efectivo money = num2.new Efectivo();
+        float monto = money.calcDevolucion(-1100);
+        System.out.println("Monto total:" + monto);
+        
+        Pago num3 = new Pago();
+        Pago.Tarjeta card = num3.new Tarjeta();
+        String tarjeta = card.getTipo("Credito");
+        String numT = card.getNumT("5612824719854");
+        System.out.println("Tipo de tarjeta:"+ tarjeta + " " + "Numero de tarjeta:"+ numT);
     }
 }
