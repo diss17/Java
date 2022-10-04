@@ -12,15 +12,21 @@ class Cliente {
     public Cliente() {
     }
 
-    //Getter para nombre
-    public String getNombre(String nombre) {
+    public void setNombre(String nombre) {
         this.name = nombre;
+    }
+
+    //Getter para nombre
+    public String getNombre() {
         return name;
     }
 
-    //Getter para rut
-    public String getRut(String rut) {
+    public void setRut(String rut) {
         this.id = rut;
+    }
+
+    //Getter para rut
+    public String getRut() {
         return id;
     }
     //Se supone que cada Orden de compra
@@ -36,9 +42,12 @@ class Direccion {
     public Direccion() {
     }
 
-    //Getter para direccion
-    public String getDirec(String direccion) {
+    public void setDirec(String direccion) {
         this.address = direccion;
+    }
+
+    //Getter para direccion
+    public String getDirec() {
         return address;
     }
 }
@@ -68,93 +77,46 @@ class OrdenCompra {
 
 }
 
-
 //  Class fran.
 class Articulo {
 
-    private float pesoUn, money;
+    private float weight, money;
     private String nameUs, description;
-    
+
     public Articulo() {
     }
-    
-    public float getPeso(float peso) {
-        this.pesoUn = peso;
-        return pesoUn;
+
+    public void setPeso(float peso) {
+        this.weight = peso;
     }
 
-    public float getPrecio(float precio) {
+    public float getPeso() {
+        return weight;
+    }
+
+    public void setPrecio(float precio) {
         this.money = precio;
+    }
+
+    public float getPrecio() {
         return money;
     }
 
-    public String getNombre(String nombre) {
+    public void setNombre(String nombre) {
         this.nameUs = nombre;
+    }
+
+    public String getNombre() {
         return nameUs;
     }
 
-    public String getDescripcion(String descripcion) {
+    public void setDescripcion(String descripcion) {
         this.description = descripcion;
+    }
+
+    public String getDescripcion() {
         return description;
-
     }
-
-  
-    
-    class DetalleOrden extends Articulo{
-        private int cantidad;
-        public DetalleOrden(int c){
-            c=cantidad;
-            
-        }
-        public int total;
-        public int iva;
-        public int calcPrecio(int total){
-            int moneyInt=Math.round(money);
-            total=cantidad*moneyInt;
-            return total;
-        }
-
-        public int calcIVA (int iva){
-            iva=(19*total)/100;
-            return iva;
-        }
-        
-        public int calPrecioSinIVA(int totalSinIVA){
-            //Calculamos el precio quitandole el IVA
-            totalSinIVA=total-iva;
-            return totalSinIVA;
-        }
-        
-        public int calcPeso(int pesoTotal){
-            //Calculamos el peso total
-            int pesoInt=Math.round(pesoUn);
-            pesoTotal=cantidad*pesoInt;
-            return pesoTotal;
-        }
-    
-}
-    
-
-}
-
-class Tarjeta {
-
-    public Tarjeta() {
-
-    }
-    String tipo;
-    String numTransaccion;
-
-}
-
-class Transferencia {
-
-    public Transferencia() {
-
-    }
-    String banco;
-    String numCuenta;
 }
 
 class Pago {
@@ -164,49 +126,67 @@ class Pago {
 
     public Pago() {
     }
+}
 
-    class Efectivo extends Pago {
+class Efectivo extends Pago {
 
-        public Efectivo() {
-        }
-        public float calcDevolucion(float dinero) {
-            if (monto == dinero) {
-                return 0;
-            } else {
-                return monto - dinero;
-            }
-        }
+    public Efectivo() {
     }
 
-    class Transferencia extends Pago {
-
-        private String banco;
-        private String numCuenta;
-
-        public Transferencia() {
-        }
-
-        public String getBank(String bank) {
-            this.banco = bank;
-            return banco;
-        }
-
-        public String getNumCuenta(String num) {
-            this.numCuenta = num;
-            return numCuenta;
-        }
+    public float calcDevolucion(float dinero) {
+        return dinero;
     }
-    class Tarjeta extends Pago{
-        private String tipo;
-        private String numTransaccion;
-        public String getTipo(String type){
-            this.tipo = type;
-            return type;
-        }
-        public String getNumT(String num){
-            this.numTransaccion = num;
-            return numTransaccion;
-        }
+}
+
+class Tarjeta extends Pago {
+
+    private String tipo;
+    private String numTransaccion;
+
+    public Tarjeta() {
+
+    }
+
+    public void setTipo(String type) {
+        this.tipo = type;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setNumT(String num) {
+        this.numTransaccion = num;
+
+    }
+
+    public String getNumT() {
+        return numTransaccion;
+    }
+}
+
+class Transferencia extends Pago {
+
+    private String banco;
+    private String numCuenta;
+
+    public Transferencia() {
+    }
+
+    public void setBank(String bank) {
+        this.banco = bank;
+    }
+
+    public String getBank() {
+        return banco;
+    }
+
+    public void setNumCuenta(String num) {
+        this.numCuenta = num;
+    }
+
+    public String getNumCuenta() {
+        return numCuenta;
     }
 }
 
@@ -231,10 +211,10 @@ public class Tarea01 {
         Cliente d = new Cliente();
         Cliente f = new Cliente();
         Direccion a = new Direccion();
-        String nombre = d.getNombre("Daniel");
-        String rut = f.getRut("212272183");
-        String direccion = a.getDirec("Patio los callaos");
-        System.out.println(nombre + " " + rut + " " + direccion);
+        d.setNombre("Daniel");
+        f.setRut("212272183");
+        a.setDirec("Patio los callaos");
+        System.out.println(d.getNombre() + " " + f.getRut() + " " + a.getDirec());
         System.out.println();
         //Tamo instanciando Articulo de pana.
         Articulo x = new Articulo();
@@ -242,37 +222,35 @@ public class Tarea01 {
         Articulo z = new Articulo();
         Articulo v = new Articulo();
 
-        float pesO = z.getPeso(7);
-        float preciO = v.getPrecio(12000);
-        String nombreArticulo = x.getNombre("Mouse");
-        String descrip = y.getDescripcion("Es rosado pinki barbie");
-        System.out.println(nombreArticulo + " " + descrip + " pesa " + pesO + " y vale " + preciO + " bella");
+        z.setPeso(7);
+        v.setPrecio(12000);
+        x.setNombre("Mouse");
+        y.setDescripcion("Es rosado pinki barbie");
+        System.out.println(x.getNombre() + " " + y.getDescripcion() + " pesa " + z.getPeso() + " y vale " + v.getPrecio() + " bella");
         System.out.println();
-        
-        
+
         //Instancia/Prueba metodos de pago
+        /*
         Pago num1 = new Pago();
         Pago.Transferencia bank = num1.new Transferencia();
         String banco = bank.getBank("Santander");
         String cuenta = bank.getNumCuenta("12412451");
-        System.out.println("Nombre del banco:" + banco + " " + "Numero de cuenta:" +cuenta);
-        
+        System.out.println("Nombre del banco:" + banco + " " + "Numero de cuenta:" + cuenta);
+
         Pago num2 = new Pago();
         Pago.Efectivo money = num2.new Efectivo();
         float monto = money.calcDevolucion(-1100);
         System.out.println("Monto total:" + monto);
-        
+
         Pago num3 = new Pago();
         Pago.Tarjeta card = num3.new Tarjeta();
         String tarjeta = card.getTipo("Credito");
         String numT = card.getNumT("5612824719854");
-        System.out.println("Tipo de tarjeta:"+ tarjeta + " " + "Numero de tarjeta:"+ numT);
-        
+        System.out.println("Tipo de tarjeta:" + tarjeta + " " + "Numero de tarjeta:" + numT);
+
         //Probemos clase DetalleOrden
-        Articulo c=new Articulo();
-        Articulo.DetalleOrden cant=c.new DetalleOrden(3);
-      
-        
-        
+        Articulo c = new Articulo();
+        Articulo.DetalleOrden cant = c.new DetalleOrden(3);
+         */
     }
 }
