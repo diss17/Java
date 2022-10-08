@@ -60,6 +60,7 @@ class OrdenCompra {
     }
 
     public int calcPrecioSinIva(int num) {
+
         return 0;
     }
 
@@ -67,7 +68,7 @@ class OrdenCompra {
         return 0;
     }
 
-    public int calcPrecio(int num) {
+    public float calcPrecio() {
         return 0;
     }
 
@@ -77,7 +78,34 @@ class OrdenCompra {
 
 }
 
+class DetalleOrden {
+
+    private int cantidad;
+    private OrdenCompra compra;
+    private Articulo articulo;
+
+    public DetalleOrden() {
+
+    }
+
+    public float calcPrecio() {
+        return 0;
+    }
+
+    public float calcPrecioSinIva() {
+        return 0;
+    }
+
+    public float calcIVA() {
+        return 0;
+    }
+
+    public float calcPeso() {
+        return 0;
+    }
+}
 //  Class fran.
+
 class Articulo {
 
     private float weight, money;
@@ -121,7 +149,7 @@ class Articulo {
 
 class Pago {
 
-    private float monto;
+    protected float monto;
     Date fecha = new Date();
 
     public Pago() {
@@ -131,10 +159,12 @@ class Pago {
 class Efectivo extends Pago {
 
     public Efectivo() {
+
     }
 
     public float calcDevolucion(float dinero) {
-        return dinero;
+        float total = this.monto - dinero;
+        return total;
     }
 }
 
@@ -221,36 +251,34 @@ public class Tarea01 {
         Articulo y = new Articulo();
         Articulo z = new Articulo();
         Articulo v = new Articulo();
-
+        Articulo g = new Articulo();
+        m.calcPrecio();
         z.setPeso(7);
         v.setPrecio(12000);
+        g.setPrecio(3000);
         x.setNombre("Mouse");
         y.setDescripcion("Es rosado pinki barbie");
         System.out.println(x.getNombre() + " " + y.getDescripcion() + " pesa " + z.getPeso() + " y vale " + v.getPrecio() + " bella");
         System.out.println();
-
+        System.out.println(m);
         //Instancia/Prueba metodos de pago
-        /*
-        Pago num1 = new Pago();
-        Pago.Transferencia bank = num1.new Transferencia();
-        String banco = bank.getBank("Santander");
-        String cuenta = bank.getNumCuenta("12412451");
-        System.out.println("Nombre del banco:" + banco + " " + "Numero de cuenta:" + cuenta);
 
-        Pago num2 = new Pago();
-        Pago.Efectivo money = num2.new Efectivo();
-        float monto = money.calcDevolucion(-1100);
+        Transferencia bank = new Transferencia();
+        bank.setBank("Santander");
+        bank.setNumCuenta("12412451");
+        System.out.println("Nombre del banco:" + bank.getBank() + " " + "Numero de cuenta:" + bank.getNumCuenta());
+
+        Efectivo num2 = new Efectivo();
+        float monto = num2.calcDevolucion(-1100);
         System.out.println("Monto total:" + monto);
 
-        Pago num3 = new Pago();
-        Pago.Tarjeta card = num3.new Tarjeta();
-        String tarjeta = card.getTipo("Credito");
-        String numT = card.getNumT("5612824719854");
-        System.out.println("Tipo de tarjeta:" + tarjeta + " " + "Numero de tarjeta:" + numT);
+        Tarjeta num3 = new Tarjeta();
+        num3.setTipo("Credito");
+        num3.setNumT("5612824719854");
+        System.out.println("Tipo de tarjeta:" + num3.getTipo() + " " + "Numero de tarjeta:" + num3.getNumT());
 
         //Probemos clase DetalleOrden
         Articulo c = new Articulo();
-        Articulo.DetalleOrden cant = c.new DetalleOrden(3);
-         */
+
     }
 }
