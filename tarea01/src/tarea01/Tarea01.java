@@ -189,10 +189,10 @@ class Articulo {
     }
 }
 
-class Pago {
+public abstract class Pago{
 
-    protected float monto;
-    Date fecha = new Date();
+    private float monto;
+    private Date date;
 
     public Pago() {
     }
@@ -262,6 +262,9 @@ class Transferencia extends Pago {
     }
 }
 
+
+
+
 class DocTributario {
     private String number;
     private String id;
@@ -281,6 +284,9 @@ class Boleta extends DocTributario{
     }
 }
 
+
+
+//Main feo.
 public class Tarea01 {
 
     public static void main(String[] args) {
