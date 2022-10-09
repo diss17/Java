@@ -10,6 +10,7 @@ class Cliente {
 
     //Constructor
     public Cliente() {
+        
     }
 
     public void setNombre(String nombre) {
@@ -32,6 +33,8 @@ class Cliente {
     //Se supone que cada Orden de compra
     //debe ir asociada a un cliente distinto
     OrdenCompra asociado;
+    
+    
 }
 
 class Direccion {
@@ -39,7 +42,8 @@ class Direccion {
     private String address;
 
     //Constructor
-    public Direccion() {
+    public Direccion(String address) {
+        this.address=address;
     }
 
     public void setDirec(String direccion) {
@@ -79,29 +83,36 @@ class OrdenCompra {
 }
 
 class DetalleOrden {
-
     private int cantidad;
-    private OrdenCompra compra;
-    private Articulo articulo;
-
-    public DetalleOrden() {
-
+    Articulo articulo;
+    
+    public DetalleOrden(Articulo articulo,int cantidad) {
+        this.articulo=articulo;
+        this.cantidad=cantidad;
+    }
+    
+    public void setCant(int cant){
+        this.cantidad=cant;
+    }
+    
+    public int getCant(){
+        return cantidad;
     }
 
     public float calcPrecio() {
-        return 0;
+        return articulo.getPrecio()*cantidad;
     }
 
     public float calcPrecioSinIva() {
-        return 0;
+        return articulo.getPrecio()*cantidad-calcIVA();        
     }
 
     public float calcIVA() {
-        return 0;
+        return articulo.getPrecio()*cantidad*19/100;
     }
 
     public float calcPeso() {
-        return 0;
+        return articulo.getPeso()*cantidad;
     }
 }
 //  Class fran.
@@ -111,7 +122,12 @@ class Articulo {
     private float weight, money;
     private String nameUs, description;
 
-    public Articulo() {
+    public Articulo(float weight,float money,String nameUs,String description) {
+        this.weight=weight;
+        this.money=money;
+        this.nameUs=nameUs;
+        this.description=description;
+        
     }
 
     public void setPeso(float peso) {
@@ -225,13 +241,18 @@ class DocTributario {
     Date fecha = new Date();
     private String numero;
     private String rut;
+    
 }
 
-class Factura {
+class Factura extends DocTributario {
+     public Factura() {
+    }
 
 }
 
-class Boleta {
+class Boleta extends DocTributario{
+     public Boleta() {
+    }
 }
 
 public class Tarea01 {
