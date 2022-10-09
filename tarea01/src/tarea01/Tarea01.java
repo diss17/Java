@@ -202,9 +202,9 @@ class Articulo {
     }
 }
 
-public class Pago{
-    private float monto;
-    private Date date;
+public abstract class Pago{
+    protected float monto;
+    protected Date date;
     
     public Pago(float monto,Date date) {
         this.monto=monto;
@@ -235,12 +235,16 @@ class Efectivo extends Pago {
         super(monto,date);
     }
 
-    public float calcDevolucion(float montoTotal) {
-        if(monto>montoTotal){
-            
+    public String calcDevolucion(float montoTotal) {
+        if(this.monto>montoTotal){
+            return "El vuelto es: $ "+String.valueOf(monto-montoTotal);
+        }else if(this.monto<montoTotal){
+            return "Le faltan: $"+String.valueOf(monto-montoTotal);       
+        }else{
+            return "Pagado";
         }
-        float total = this.monto - montoTotal;
-        return total;
+            
+  
     }
 }
 
@@ -249,26 +253,32 @@ class Tarjeta extends Pago {
     private String tipo;
     private String numTransaccion;
 
-    public Tarjeta() {
-
+    public Tarjeta(float monto,Date date,String tipo,String numTransaccion) {
+        super(monto,date);
+        this.tipo=tipo;
+        this.numTransaccion=numTransaccion; 
     }
 
     public void setTipo(String type) {
         this.tipo = type;
     }
-
     public String getTipo() {
         return tipo;
     }
-
     public void setNumT(String num) {
         this.numTransaccion = num;
 
     }
-
     public String getNumT() {
         return numTransaccion;
     }
+    
+    @Override
+    public String toString(){
+        return "Pago en Tarjeta: "+super.toString()+"\n tipo: "+this.tipo+"\n y Número de Transacción: "+this.numTransaccion;
+    }
+    
+    
 }
 
 class Transferencia extends Pago {
@@ -276,7 +286,10 @@ class Transferencia extends Pago {
     private String banco;
     private String numCuenta;
 
-    public Transferencia() {
+    public Transferencia(float monto,Date date,String banco,String numCuenta){
+        super(monto,date);
+        this.banco=banco;
+        this.numCuenta=numCuenta;
     }
 
     public void setBank(String bank) {
@@ -293,6 +306,11 @@ class Transferencia extends Pago {
 
     public String getNumCuenta() {
         return numCuenta;
+    }
+    
+    @Override
+    public String toString(){
+        return "Pago en Transferencia: "+super.toString()+"\n Banco: "+this.banco+"\n y Número de cuenta: "+this.numCuenta;
     }
 }
 
