@@ -7,10 +7,12 @@ import java.util.Date;
 class Cliente {
 
     private String name, id;
-
-    //Constructor
-    public Cliente() {
-        
+    //Segun UML le debemos asignar la dirección en cliente.
+    private Direccion address;
+    public Cliente(String name, String id, Direccion address) {
+        this.name=name;
+        this.id=id;
+        this.address=address;  
     }
 
     public void setNombre(String nombre) {
@@ -30,6 +32,14 @@ class Cliente {
     public String getRut() {
         return id;
     }
+
+    
+    //Me pide override?si, es asi xd
+    @Override
+    public String toString(){
+        return "Cliente: "+name+"\n R.U.T:"+id;
+    }
+    
     //Se supone que cada Orden de compra
     //debe ir asociada a un cliente distinto
     OrdenCompra asociado;
@@ -53,6 +63,11 @@ class Direccion {
     //Getter para direccion
     public String getDirec() {
         return address;
+    }
+    
+    @Override
+    public String toString(){
+        return "Dirección: "+address;
     }
 }
 
@@ -98,21 +113,27 @@ class DetalleOrden {
     public int getCant(){
         return cantidad;
     }
-
-    public float calcPrecio() {
-        return articulo.getPrecio()*cantidad;
+    
+    public float calcIVA() {
+        return (articulo.getPrecio()*19/100)*cantidad;
     }
 
     public float calcPrecioSinIva() {
-        return articulo.getPrecio()*cantidad-calcIVA();        
+        return articulo.getPrecio()*cantidad;        
     }
-
-    public float calcIVA() {
-        return articulo.getPrecio()*cantidad*19/100;
+    
+    public float calcPrecio() {
+        return this.calcPrecioSinIva()+this.calcIVA();
     }
-
+    
     public float calcPeso() {
         return articulo.getPeso()*cantidad;
+    }
+    
+    @Override
+    public String toString(){
+        return"Detalles de la orden: "+cantidad+" unidades de: "+articulo.getNombre();
+        
     }
 }
 //  Class fran.
@@ -120,46 +141,51 @@ class DetalleOrden {
 class Articulo {
 
     private float weight, money;
-    private String nameUs, description;
+    private String name, description;
 
-    public Articulo(float weight,float money,String nameUs,String description) {
+    public Articulo(float weight,float money,String name,String description) {
         this.weight=weight;
         this.money=money;
-        this.nameUs=nameUs;
+        this.name=name;
         this.description=description;
         
     }
 
-    public void setPeso(float peso) {
-        this.weight = peso;
+    public void setPeso(float weight) {
+        this.weight = weight;
     }
 
     public float getPeso() {
         return weight;
     }
 
-    public void setPrecio(float precio) {
-        this.money = precio;
+    public void setPrecio(float money) {
+        this.money = money;
     }
 
     public float getPrecio() {
         return money;
     }
 
-    public void setNombre(String nombre) {
-        this.nameUs = nombre;
+    public void setNombre(String name) {
+        this.name = name;
     }
 
     public String getNombre() {
-        return nameUs;
+        return name;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.description = descripcion;
+    public void setDescripcion(String description) {
+        this.description = description;
     }
 
     public String getDescripcion() {
         return description;
+    }
+    
+    @Override
+    public String toString(){
+        return "Artículo: " +name+"\n Descripción: "+description+"\n Peso:"+weight+"Kg."+"\n Precio: $"+money;
     }
 }
 
@@ -237,11 +263,11 @@ class Transferencia extends Pago {
 }
 
 class DocTributario {
-
-    Date fecha = new Date();
-    private String numero;
-    private String rut;
-    
+    private String number;
+    private String id;
+    private Date date;
+    private Direccion address;
+    private OrdenCompra order;
 }
 
 class Factura extends DocTributario {
