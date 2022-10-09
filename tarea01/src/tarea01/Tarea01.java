@@ -37,13 +37,8 @@ class Cliente {
     //Me pide override?si, es asi xd
     @Override
     public String toString(){
-        return "Cliente: "+name+"\n R.U.T:"+id;
+        return "Datos del cliente: "+this.name+"\n R.U.T:"+this.id+"\n Dirección: "+this.address;
     }
-    
-    //Se supone que cada Orden de compra
-    //debe ir asociada a un cliente distinto
-    OrdenCompra asociado;
-    
     
 }
 
@@ -67,23 +62,38 @@ class Direccion {
     
     @Override
     public String toString(){
-        return "Dirección: "+address;
+        return "Dirección: "+this.address;
     }
 }
 
 class OrdenCompra {
+    //Orden de compra tiene asociado cliente, detalle de orden, pago y 
+    //documento tributario por lo que tenemos que crear variables de ese 
+    //tipo de clase.
+    //Como OrdenCompra recibirá varios DetalleCompra es necesario generar 
+    //una lista, es decir un Array
     private Date date;
     private String state;
-    public DetalleOrden order;
+    private Cliente client;
+    private DetalleOrden[] order;
+    
         
     public OrdenCompra() {
-        order= new DetalleOrden();
         
     }
 
-    public int calcPrecioSinIva(int num) {
-
-        return 0;
+    public float calcPrecioSinIva() {
+        //Inicializamos la variable total.
+        float total=0;
+        for(int i=0; i<order.length;i++){
+            if(order[i]!=null){
+                total=order[i].calcPrecioSinIVA()+total;
+            }else{
+                break;
+                
+            }
+        }
+        return total;
     }
 
     public int calcIva(int num) {
@@ -135,7 +145,7 @@ class DetalleOrden {
     
     @Override
     public String toString(){
-        return"Detalles de la orden: "+cantidad+" unidades de: "+articulo.getNombre();
+        return"Detalles de la orden: "+this.cantidad+" unidades de: "+articulo.getNombre();
         
     }
 }
@@ -188,33 +198,48 @@ class Articulo {
     
     @Override
     public String toString(){
-        return "Artículo: " +name+"\n Descripción: "+description+"\n Peso:"+weight+"Kg."+"\n Precio: $"+money;
+        return "Artículo: " +this.name+"\n Descripción: "+this.description+"\n Peso:"+this.weight+"Kg."+"\n Precio: $"+this.money;
     }
 }
 
-public abstract class Pago{
-
+public class Pago{
     private float monto;
     private Date date;
-    public OrdenCompra order;
-    //Necesitamos el precio del metodo CalcPrecio de la clase OrdenCompra.
-    private float money=OrdenCompra.calPrecio();
     
     public Pago(float monto,Date date) {
         this.monto=monto;
         this.date=date;
     }
+    
+    public void setMonto(float monto){
+        this.monto=monto;
+    }
+    public float getMonto(){
+        return monto;
+    }
+    public void setDate(Date date){
+        this.date=date;
+    }
+    public Date getDate(){
+        return date;
+    }
+    @Override
+    public String toString(){
+        return "Monto: $"+this.monto+"\n Fecha: "+this.date;
+    }
 }
 
 class Efectivo extends Pago {
 
-    public Efectivo() {
-        
-
+    public Efectivo(float monto,Date date) {
+        super(monto,date);
     }
 
-    public float calcDevolucion(float dinero) {
-        float total = this.monto - dinero;
+    public float calcDevolucion(float montoTotal) {
+        if(monto>montoTotal){
+            
+        }
+        float total = this.monto - montoTotal;
         return total;
     }
 }
@@ -328,12 +353,21 @@ class Factura extends DocTributario {
      public Factura(String number, String id, Date date, Direccion address, OrdenCompra order) {
         super(number, id, date, address,order);
     }
+     
+    @Override
+    public String toString(){
+        return super.toString();
+    }
 
 }
 
 class Boleta extends DocTributario{
     public Boleta(String number, String id, Date date, Direccion address, OrdenCompra order) {
         super(number, id, date, address,order);
+    }
+     @Override
+    public String toString(){
+        return super.toString();
     }
 }
 
