@@ -28,10 +28,9 @@ public class Cliente {
     }
 
     
-    //Me pide override?si, es asi xd
     @Override
     public String toString(){
-        return "Datos del cliente: "+this.name+"\n R.U.T:"+this.id+"\n Dirección: "+this.address;
+        return "Datos del cliente: "+this.name+"\n R.U.T: "+this.id+"\n Dirección: "+this.address;
     }
     
 }

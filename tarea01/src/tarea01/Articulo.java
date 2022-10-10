@@ -46,6 +46,6 @@ class Articulo {
     
     @Override
     public String toString(){
-        return "Artículo: " +this.name+"\n Descripción: "+this.description+"\n Peso:"+this.weight+"Kg."+"\n Precio: $"+this.money;
+        return "Articulo: " +this.name+"\n Descripcion: "+this.description+"\n Peso:"+this.weight+"Kg."+"\n Precio: $"+this.money;
     }
 }

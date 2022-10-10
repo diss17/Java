@@ -20,7 +20,7 @@ public class Direccion {
     
     @Override
     public String toString(){
-        return "Dirección: "+this.address;
+        return "Direccion: "+this.address;
     }
     
 }

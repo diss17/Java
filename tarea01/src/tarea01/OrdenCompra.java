@@ -82,8 +82,6 @@ public class OrdenCompra {
             }else{
                 break;
             }
-            
-            
         }
         return total;
     }
@@ -101,7 +99,7 @@ public class OrdenCompra {
     }
     @Override
     public String toString(){
-        return "Orden compra de"+this.client.getNombre()+"\n Fecha: "+this.date+"\n Estado: "+this.state;
+        return "Orden compra de "+this.client.getNombre()+"\n Fecha: "+this.date+"\n Estado: "+this.state;
     }  
     
 }

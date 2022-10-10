@@ -4,55 +4,51 @@ package tarea01;
 import java.util.Date;
 
 //Definicion de clases
-
-
-
 //Main feo.
 public class Tarea01 {
 
     public static void main(String[] args) {
-        OrdenCompra m = new OrdenCompra();
-        Cliente d = new Cliente();
-        Cliente f = new Cliente();
-        Direccion a = new Direccion();
-        d.setNombre("Daniel");
-        f.setRut("212272183");
-        a.setDirec("Patio los callaos");
-        System.out.println(d.getNombre() + " " + f.getRut() + " " + a.getDirec());
-        System.out.println();
-        //Tamo instanciando Articulo de pana.
-        Articulo x = new Articulo();
-        Articulo y = new Articulo();
-        Articulo z = new Articulo();
-        Articulo v = new Articulo();
-        Articulo g = new Articulo();
-        m.calcPrecio();
-        z.setPeso(7);
-        v.setPrecio(12000);
-        g.setPrecio(3000);
-        x.setNombre("Mouse");
-        y.setDescripcion("Es rosado pinki barbie");
-        System.out.println(x.getNombre() + " " + y.getDescripcion() + " pesa " + z.getPeso() + " y vale " + v.getPrecio() + " bella");
-        System.out.println();
-        System.out.println(m);
-        //Instancia/Prueba metodos de pago
+        Date f = new Date();
+        Direccion a = new Direccion("Avenida Siempre viva #101");
+        Cliente p = new Cliente("Daniel", "1248124", a);
+        Articulo x = new Articulo(1000, 12000, "Mouse", "Mouse gamer");
+        DetalleOrden Mouses = new DetalleOrden(x, 1);
+        DetalleOrden Lampara = new DetalleOrden(x, 4);
+        DetalleOrden Estuche = new DetalleOrden(x, 1);
+        OrdenCompra Orden = new OrdenCompra(p, f, "No pago");
+        Orden.addDetails(Mouses);
+        Orden.addDetails(Lampara);
+        Orden.addDetails(Estuche);
+        System.out.println(Orden.toString());
 
-        Transferencia bank = new Transferencia();
-        bank.setBank("Santander");
-        bank.setNumCuenta("12412451");
-        System.out.println("Nombre del banco:" + bank.getBank() + " " + "Numero de cuenta:" + bank.getNumCuenta());
+        Efectivo num1 = new Efectivo(Orden.calcPrecio(), 50000, f);
+        System.out.println("\n--Se realiza un pago en efectivo--\n");
+        System.out.println("Monto total:" + num1.monto + " " + num1.CalDevolucion());
 
-        Efectivo num2 = new Efectivo();
-        float monto = num2.calcDevolucion(-1100);
-        System.out.println("Monto total:" + monto);
+        Boleta boleta1 = new Boleta("01234", p.getRut(), f, a, Orden);
+        System.out.println("\n--Boleta Orden 1--" + boleta1.toString());
 
-        Tarjeta num3 = new Tarjeta();
-        num3.setTipo("Credito");
-        num3.setNumT("5612824719854");
-        System.out.println("Tipo de tarjeta:" + num3.getTipo() + " " + "Numero de tarjeta:" + num3.getNumT());
+        Tarjeta card = new Tarjeta(14000, f, "Debito", "82154821");
+        System.out.println("\n--Tarjeta Orden 1--" + card.toString());
 
-        //Probemos clase DetalleOrden
-        Articulo c = new Articulo();
+        Transferencia trans = new Transferencia(14000, f, "Santander", "23189432");
+        System.out.println("\n--Transferencia Orden 1--" + trans.toString());
+
+        Direccion c = new Direccion("Avenida Siempre viva #102");
+        Cliente b = new Cliente("Franchesca", "1248124", c);
+        Articulo teclado1 = new Articulo(1000, 8000, "Teclado", "gamer");
+        Articulo teclado2 = new Articulo(1000, 9000, "Teclado", "oficina");
+        DetalleOrden Teclado1 = new DetalleOrden(teclado1, 3);
+        DetalleOrden Teclado2 = new DetalleOrden(teclado2, 2);
+        OrdenCompra Orden2 = new OrdenCompra(b, f, "No pago");
+        Orden2.addDetails(Teclado1);
+        Orden2.addDetails(Teclado2);
+        System.out.println(Orden2.toString());
+        Efectivo num2 = new Efectivo(Orden2.calcPrecio(), 14000, f);
+        System.out.println("\n--Se realiza un pago en efectivo--\n");
+        System.out.println("Monto total:" + num2.monto + " " + num2.CalDevolucion());
+        Boleta boleta2 = new Boleta("012346", b.getRut(), f, c, Orden2);
+        System.out.println("\n--Boleta Orden 1--" + boleta2.toString());
 
     }
 }

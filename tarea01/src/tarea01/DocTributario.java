@@ -48,7 +48,7 @@ public class DocTributario {
     //Unimos toda la informacion con toString.
     @Override
     public String toString(){
-        return "-Información cliente- Número"+number+"\n R.U.T"+id+"\n Fecha: "+date+"\n Dirección: "+address;
+        return "-Informacion cliente- Numero: "+number+"\n R.U.T: "+id+"\n Fecha: "+date+"\n Direccion: "+address;
         
     }
 }
