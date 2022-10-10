@@ -2,6 +2,7 @@ package tarea01;
 //Obtener fecha
 
 import java.util.Date;
+
 //Definicion de clases
 
 class Cliente {
@@ -67,27 +68,57 @@ class Direccion {
 }
 
 class OrdenCompra {
-    //Orden de compra tiene asociado cliente, detalle de orden, pago y 
-    //documento tributario por lo que tenemos que crear variables de ese 
-    //tipo de clase.
-    //Como OrdenCompra recibirá varios DetalleCompra es necesario generar 
-    //una lista, es decir un Array
     private Date date;
     private String state;
     private Cliente client;
-    private DetalleOrden[] order;
+    private DocTributario documents;
+    private DetalleOrden[] details;
+    private Pago[] money;
+    
+    //Variables auxiliares.
+    private int index=0;
+    private float debt=0;
     
         
-    public OrdenCompra() {
+    public OrdenCompra(Cliente client,Date date,String state){ 
+        this.client=client;
+        this.date=date;
+        this.state=state;
+        this.details=new DetalleOrden[10];  //Instanciamos la lista de los varios Detalles.
         
     }
-
+    
+    public void addDetails(DetalleOrden detailss){
+        if(index<details.length){ 
+            details[index]=detailss; 
+            index ++;
+        }
+               
+        
+    }
+            
+    public String State(){
+        if(debt<=0){
+            return state="PAGADO";
+        }else{
+            return state="NO PAGADO";
+        }
+    }
+    
+    public void setDebt(float debt){
+        this.debt=debt;
+    }
+    public float getDebt(){
+        return debt;
+    }
+    
+        
     public float calcPrecioSinIva() {
         //Inicializamos la variable total.
         float total=0;
-        for(int i=0; i<order.length;i++){
-            if(order[i]!=null){
-                total=order[i].calcPrecioSinIVA()+total;
+        for(int i=0; i<details.length;i++){
+            if(details[i]!=null){ //
+                total=details[i].calcPrecioSinIva()+total;
             }else{
                 break;
                 
@@ -96,18 +127,47 @@ class OrdenCompra {
         return total;
     }
 
-    public int calcIva(int num) {
-        return 0;
+    public float calcIva(int num) {
+        float total=0;
+        for(int i=0;i<details.length;++i){
+            if(details[i]!=null){
+                total=details[i].calcIVA();
+            }else{
+                break;
+            }
+        }
+        return total;
     }
 
     public float calcPrecio() {
-        return 0;
+        float total=0;
+        for(int i=0;i<details.length;++i){
+            if(details[i]!=null){
+            total=details[i].calcPrecio();
+            }else{
+                break;
+            }
+            
+            
+        }
+        return total;
     }
 
-    public int calcPeso() {
-        return 0;
+    public float calcPeso() {
+        float total=0;
+        for(int i=0;i<details.length;++i){
+            if(details[i]!=null){
+                total=details[i].calcPeso()+total;
+            }else{
+                break;
+            }
+        }
+        return total;
     }
-
+    @Override
+    public String toString(){
+        return "Orden compra de"+this.client.getNombre()+"\n Fecha: "+this.date+"\n Estado: "+this.state;
+    }  
 }
 
 class DetalleOrden {
